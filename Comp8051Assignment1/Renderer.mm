@@ -41,6 +41,8 @@ enum
 
     float *vertices, *normals, *texCoords;
     int *indices, numIndices;
+    
+    GLKView * currentView;
 }
 
 @end
@@ -80,6 +82,8 @@ enum
     UITapGestureRecognizer * dtRec = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];
     dtRec.numberOfTapsRequired = 2;
     [view addGestureRecognizer:dtRec];
+    
+    currentView = view;
 }
 
 - (void)doubleTap:(UITapGestureRecognizer *)tap {
@@ -87,20 +91,18 @@ enum
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    
-    UITouch * touch = [touches anyObject];
-    CGPoint location = [touch locationInView:self.view];
-    CGPoint lastLoc = [touch previousLocationInView:self.view];
-    CGPoint diff = CGPointMake(lastLoc.x - location.x, lastLoc.y - location.y);
-    
-    float rotX = -1 * GLKMathDegreesToRadians(diff.y / 2.0);
-    float rotY = -1 * GLKMathDegreesToRadians(diff.x / 2.0);
-    
-    GLKVector3 xAxis = GLKVector3Make(1, 0, 0);
-    _rotMatrix = GLKMatrix4Rotate(_rotMatrix, rotX, xAxis.x, xAxis.y, xAxis.z);
-    GLKVector3 yAxis = GLKVector3Make(0, 1, 0);
-    _rotMatrix = GLKMatrix4Rotate(_rotMatrix, rotY, yAxis.x, yAxis.y, yAxis.z);
-    
+    if(!isRotating){
+        UITouch * touch = [touches anyObject];
+        CGPoint location = [touch locationInView:currentView];
+        CGPoint lastLoc = [touch previousLocationInView:currentView];
+        CGPoint diff = CGPointMake(lastLoc.x - location.x, lastLoc.y - location.y);
+        
+        float rotX = -1 * GLKMathDegreesToRadians(diff.y / 2.0);
+        float rotY = -1 * GLKMathDegreesToRadians(diff.x / 2.0);
+        
+        mvp = GLKMatrix4Rotate(mvp, rotX, 1.0, 0.0, 0.0 );
+        mvp = GLKMatrix4Rotate(mvp, rotY, 0.0, 1.0, 0.0 );
+    }
 }
 
 - (void)update

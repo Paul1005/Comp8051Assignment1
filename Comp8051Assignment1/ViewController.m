@@ -47,5 +47,7 @@
     [glesRenderer draw:rect]; // ###
 }
 
-
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    [glesRenderer touchesMoved:touches withEvent:event]; // ###
+}
 @end
