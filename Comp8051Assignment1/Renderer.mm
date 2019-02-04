@@ -73,6 +73,7 @@ enum
     [EAGLContext setCurrentContext:view.context];
     if (![self setupShaders])
         return;
+    rotAngleX = 0.0f;
     rotAngleY = 0.0f;
     isRotating = 1;
 
@@ -118,6 +119,7 @@ enum
 
     // Perspective
     mvp = GLKMatrix4Translate(GLKMatrix4Identity, 0.0, 0.0, -5.0);
+    mvp = GLKMatrix4Rotate(mvp, rotAngleX, 1.0, 0.0, 0.0 );
     mvp = GLKMatrix4Rotate(mvp, rotAngleY, 0.0, 1.0, 0.0 );
     normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(mvp), NULL);
 
