@@ -13,6 +13,7 @@
 - (void)update;
 - (void)draw:(CGRect)drawRect;
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
+- (void)pinchZoom:(UIPinchGestureRecognizer *)pinch
 
 @end
 

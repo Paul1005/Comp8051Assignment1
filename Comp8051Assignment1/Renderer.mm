@@ -85,11 +85,19 @@ enum
     dtRec.numberOfTapsRequired = 2;
     [view addGestureRecognizer:dtRec];
     
+    UIPinchGestureRecognizer * pRec = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchZoom:)];
+    [view addGestureRecognizer:pRec];
+    
     currentView = view;
 }
 
 - (void)doubleTap:(UITapGestureRecognizer *)tap {
     isRotating = !isRotating;
+}
+
+- (void)pinchZoom:(UIPinchGestureRecognizer *)pinch {
+    pinch.view.transform = CGAffineTransformScale(pinch.view.transform, pinch.scale, pinch.scale);
+    pinch.scale = 1;
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {

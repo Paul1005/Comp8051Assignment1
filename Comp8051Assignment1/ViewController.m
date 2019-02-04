@@ -50,4 +50,9 @@
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     [glesRenderer touchesMoved:touches withEvent:event]; // ###
 }
+
+- (void)pinchZoom:(UIPinchGestureRecognizer *)pinch {
+    [glesRenderer pinchZoom:pinch]; // ###
+}
+
 @end
