@@ -96,8 +96,10 @@ enum
 }
 
 - (void)pinchZoom:(UIPinchGestureRecognizer *)pinch {
-    pinch.view.transform = CGAffineTransformScale(pinch.view.transform, pinch.scale, pinch.scale);
-    pinch.scale = 1;
+    if(!isRotating){
+        pinch.view.transform = CGAffineTransformScale(pinch.view.transform, pinch.scale, pinch.scale);
+        pinch.scale = 1;
+    }
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
