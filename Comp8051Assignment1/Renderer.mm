@@ -36,7 +36,8 @@ enum
     GLKMatrix4 mvp;
     GLKMatrix3 normalMatrix;
 
-    float rotAngle;
+    float rotAngleY;
+    float rotAngleX;
     bool isRotating;
 
     float *vertices, *normals, *texCoords;
@@ -72,7 +73,7 @@ enum
     [EAGLContext setCurrentContext:view.context];
     if (![self setupShaders])
         return;
-    rotAngle = 0.0f;
+    rotAngleY = 0.0f;
     isRotating = 1;
 
     glClearColor ( 0.0f, 0.0f, 0.0f, 0.0f );
@@ -97,11 +98,8 @@ enum
         CGPoint lastLoc = [touch previousLocationInView:currentView];
         CGPoint diff = CGPointMake(lastLoc.x - location.x, lastLoc.y - location.y);
         
-        float rotX = -1 * GLKMathDegreesToRadians(diff.y / 2.0);
-        float rotY = -1 * GLKMathDegreesToRadians(diff.x / 2.0);
-        
-        mvp = GLKMatrix4Rotate(mvp, rotX, 1.0, 0.0, 0.0 );
-        mvp = GLKMatrix4Rotate(mvp, rotY, 0.0, 1.0, 0.0 );
+        rotAngleX = -1 * GLKMathDegreesToRadians(diff.y / 2.0);
+        rotAngleY = -1 * GLKMathDegreesToRadians(diff.x / 2.0);
     }
 }
 
@@ -113,14 +111,14 @@ enum
     
     if (isRotating)
     {
-        rotAngle += 0.001f * elapsedTime;
-        if (rotAngle >= 360.0f)
-            rotAngle = 0.0f;
+        rotAngleY += 0.001f * elapsedTime;
+        if (rotAngleY >= 360.0f)
+            rotAngleY = 0.0f;
     }
 
     // Perspective
     mvp = GLKMatrix4Translate(GLKMatrix4Identity, 0.0, 0.0, -5.0);
-    mvp = GLKMatrix4Rotate(mvp, rotAngle, 0.0, 1.0, 0.0 );
+    mvp = GLKMatrix4Rotate(mvp, rotAngleY, 0.0, 1.0, 0.0 );
     normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(mvp), NULL);
 
     float aspect = (float)theView.drawableWidth / (float)theView.drawableHeight;
