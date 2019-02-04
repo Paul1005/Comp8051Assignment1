@@ -99,8 +99,13 @@ enum
         CGPoint lastLoc = [touch previousLocationInView:currentView];
         CGPoint diff = CGPointMake(lastLoc.x - location.x, lastLoc.y - location.y);
         
-        rotAngleX = -1 * GLKMathDegreesToRadians(diff.y / 2.0);
-        rotAngleY = -1 * GLKMathDegreesToRadians(diff.x / 2.0);
+        rotAngleX = -1 * diff.y / 2.0;
+        if (rotAngleX >= 360.0f)
+            rotAngleX = 0.0f;
+        
+        rotAngleY = -1 * diff.x / 2.0;
+        if (rotAngleY >= 360.0f)
+            rotAngleY = 0.0f;
     }
 }
 
