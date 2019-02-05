@@ -39,6 +39,8 @@ enum
     float rotAngleY;
     float rotAngleX;
     float scale;
+    float translationX;
+    float translationY;
     bool isRotating;
 
     float *vertices, *normals, *texCoords;
@@ -111,7 +113,17 @@ enum
 
 - (void)twoFingerPan:(UIPanGestureRecognizer *)pan {
     if(!isRotating){
+        CGPoint touchLocation = [pan locationInView:currentView];
+        translationX = touchLocation.x;
+        translationY = touchLocation.y;
+        //currentView.center = touchLocation;
         
+        //or
+        
+        /*CGPoint translation = [pan translationInView:currentView];
+        pan.view.center = CGPointMake(pan.view.center.x + translation.x,
+                                             pan.view.center.y + translation.y);
+        [pan setTranslation:CGPointMake(0, 0) inView:currentView];*/
     }
 }
 
@@ -146,7 +158,7 @@ enum
     }
 
     // Perspective
-    mvp = GLKMatrix4Translate(GLKMatrix4Identity, 0.0, 0.0, -5.0);
+    mvp = GLKMatrix4Translate(GLKMatrix4Identity, translationX*0.003, translationY*-0.003, -5.0);
     mvp = GLKMatrix4Rotate(mvp, rotAngleX, 1.0, 0.0, 0.0 );
     mvp = GLKMatrix4Rotate(mvp, rotAngleY, 0.0, 1.0, 0.0 );
     mvp = GLKMatrix4Scale(mvp, scale, scale, scale );
