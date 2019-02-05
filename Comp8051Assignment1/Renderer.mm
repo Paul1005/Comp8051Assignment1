@@ -83,12 +83,16 @@ enum
     glEnable(GL_DEPTH_TEST);
     lastTime = std::chrono::steady_clock::now();
     
-    UITapGestureRecognizer * dtRec = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];
-    dtRec.numberOfTapsRequired = 2;
-    [view addGestureRecognizer:dtRec];
+    UITapGestureRecognizer * doubleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];
+    doubleTapRecognizer.numberOfTapsRequired = 2;
+    [view addGestureRecognizer:doubleTapRecognizer];
     
-    UIPinchGestureRecognizer * pRec = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchZoom:)];
-    [view addGestureRecognizer:pRec];
+    UIPinchGestureRecognizer * pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchZoom:)];
+    [view addGestureRecognizer:pinchRecognizer];
+    
+    UIPanGestureRecognizer * panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self
+        action:@selector(twoFingerPan:)];
+    [view addGestureRecognizer:panRecognizer];
     
     currentView = view;
 }
@@ -100,8 +104,12 @@ enum
 - (void)pinchZoom:(UIPinchGestureRecognizer *)pinch {
     if(!isRotating){
         scale = pinch.scale;
-        //pinch.view.transform = CGAffineTransformScale(pinch.view.transform, pinch.scale, pinch.scale);
-        //pinch.scale = 1;
+    }
+}
+
+- (void)twoFingerPan:(UIPanGestureRecognizer *)pan {
+    if(!isRotating){
+        
     }
 }
 
