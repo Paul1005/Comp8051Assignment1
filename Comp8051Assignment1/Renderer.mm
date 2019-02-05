@@ -92,6 +92,8 @@ enum
     
     UIPanGestureRecognizer * panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self
         action:@selector(twoFingerPan:)];
+    panRecognizer.minimumNumberOfTouches = 2;
+    panRecognizer.maximumNumberOfTouches = 2;
     [view addGestureRecognizer:panRecognizer];
     
     currentView = view;
