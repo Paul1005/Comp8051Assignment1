@@ -38,6 +38,7 @@ enum
 
     float rotAngleY;
     float rotAngleX;
+    float scale;
     bool isRotating;
 
     float *vertices, *normals, *texCoords;
@@ -76,7 +77,8 @@ enum
     rotAngleX = 0.0f;
     rotAngleY = 0.0f;
     isRotating = 1;
-
+    scale = 1;
+    
     glClearColor ( 0.0f, 0.0f, 0.0f, 0.0f );
     glEnable(GL_DEPTH_TEST);
     lastTime = std::chrono::steady_clock::now();
@@ -97,8 +99,9 @@ enum
 
 - (void)pinchZoom:(UIPinchGestureRecognizer *)pinch {
     if(!isRotating){
-        pinch.view.transform = CGAffineTransformScale(pinch.view.transform, pinch.scale, pinch.scale);
-        pinch.scale = 1;
+        scale = pinch.scale;
+        //pinch.view.transform = CGAffineTransformScale(pinch.view.transform, pinch.scale, pinch.scale);
+        //pinch.scale = 1;
     }
 }
 
@@ -136,6 +139,7 @@ enum
     mvp = GLKMatrix4Translate(GLKMatrix4Identity, 0.0, 0.0, -5.0);
     mvp = GLKMatrix4Rotate(mvp, rotAngleX, 1.0, 0.0, 0.0 );
     mvp = GLKMatrix4Rotate(mvp, rotAngleY, 0.0, 1.0, 0.0 );
+    mvp = GLKMatrix4Scale(mvp, scale, scale, scale );
     normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(mvp), NULL);
 
     float aspect = (float)theView.drawableWidth / (float)theView.drawableHeight;
