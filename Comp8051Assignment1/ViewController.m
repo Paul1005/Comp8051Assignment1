@@ -35,12 +35,16 @@
     //Initialise GLKView. Set Context, depth format etc.
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(100, 100, 10, 10);
+    button.frame = CGRectMake(100, 100, 100, 10);
     [button setTitle:@"Button" forState:UIControlStateNormal];
     [button addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchDown];
     [button setEnabled:YES];
-    
     [self.view addSubview:button];
+    
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(200, 200, 100, 100)];
+    label.text = @"test";
+    label.textColor = UIColor.whiteColor;
+    [self.view addSubview:label];
 }
 
 -(void)onClick:(id)sender
@@ -57,6 +61,7 @@
 
 - (void)update
 {
+    //self.view.subviews..text = "test";
     [glesRenderer update]; // ###
 }
 
