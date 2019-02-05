@@ -29,8 +29,26 @@
     [glesRenderer setup:view];
     [glesRenderer loadModels];
     // ### >>>
+    
+    [super viewDidLoad];
+    
+    //Initialise GLKView. Set Context, depth format etc.
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(100, 100, 10, 10);
+    [button setTitle:@"Button" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchDown];
+    [button setEnabled:YES];
+    
+    [self.view addSubview:button];
 }
 
+-(void)onClick:(id)sender
+{
+    //Do onClick stuff here
+    [glesRenderer onClick:sender];
+    [self resignFirstResponder];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

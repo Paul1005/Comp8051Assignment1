@@ -35,7 +35,7 @@ enum
 
     GLKMatrix4 mvp;
     GLKMatrix3 normalMatrix;
-
+    GLKMatrix4 originalmvp;
     float rotAngleY;
     float rotAngleX;
     float scale;
@@ -99,6 +99,14 @@ enum
     [view addGestureRecognizer:panRecognizer];
     
     currentView = view;
+}
+
+-(void)onClick:(id)sender{
+    rotAngleX = 0.0f;
+    rotAngleY = 0.0f;
+    scale = 1;
+    translationX = 0;
+    translationY = 0;
 }
 
 - (void)doubleTap:(UITapGestureRecognizer *)tap {

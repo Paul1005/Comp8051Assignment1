@@ -13,7 +13,7 @@
 - (void)update;
 - (void)draw:(CGRect)drawRect;
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
-
+- (void)onClick:(id)sender;
 @end
 
 #endif /* Renderer_h */
