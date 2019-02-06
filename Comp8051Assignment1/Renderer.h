@@ -14,6 +14,13 @@
 - (void)draw:(CGRect)drawRect;
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
 - (void)onClick:(id)sender;
+- (float)getRotAngleX;
+- (float)getRotAngleY;
+- (float)getRotAngleZ;
+- (float)getTranslationX;
+- (float)getTranslationY;
+- (float)getTranslationZ;
+
 @end
 
 #endif /* Renderer_h */

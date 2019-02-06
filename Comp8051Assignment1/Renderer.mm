@@ -36,11 +36,13 @@ enum
     GLKMatrix4 mvp;
     GLKMatrix3 normalMatrix;
     GLKMatrix4 originalmvp;
-    float rotAngleY;
     float rotAngleX;
+    float rotAngleY;
+    float rotAngleZ;
     float scale;
     float translationX;
     float translationY;
+    float translationZ;
     bool isRotating;
 
     float *vertices, *normals, *texCoords;
@@ -99,6 +101,36 @@ enum
     [view addGestureRecognizer:panRecognizer];
     
     currentView = view;
+}
+
+- (float)getRotAngleX
+{
+    return rotAngleX;
+}
+
+- (float)getRotAngleY
+{
+    return rotAngleY;
+}
+
+- (float)getRotAngleZ
+{
+    return rotAngleZ;
+}
+
+- (float)getTranslationX
+{
+    return translationX;
+}
+
+- (float)getTranslationY
+{
+    return translationY;
+}
+
+- (float)getTranslationZ
+{
+    return translationZ;
 }
 
 -(void)onClick:(id)sender{

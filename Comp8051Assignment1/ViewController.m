@@ -10,6 +10,7 @@
 
 @interface ViewController() {
     Renderer *glesRenderer; // ###
+    UILabel *label;
 }
 @end
 
@@ -41,9 +42,10 @@
     [button setEnabled:YES];
     [self.view addSubview:button];
     
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(200, 200, 100, 100)];
-    label.text = @"test";
+    label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 1000)];
+    //label.text = @"test";
     label.textColor = UIColor.whiteColor;
+    label.numberOfLines = 0;
     [self.view addSubview:label];
 }
 
@@ -61,7 +63,13 @@
 
 - (void)update
 {
-    //self.view.subviews..text = "test";
+    label.text = [NSString stringWithFormat:@"%s%f%s%f%s%f%s%f%s%f%s%f",
+                  "X rotation: " ,[glesRenderer getRotAngleX],
+                  "\nY rotation: ", [glesRenderer getRotAngleY],
+                  "\nZ rotation: ",[glesRenderer getRotAngleZ],
+                  "\nX position: ", [glesRenderer getTranslationX],
+                  "\nY position: ",[glesRenderer getTranslationY],
+                  "\nZ position: ",[glesRenderer getTranslationZ]];
     [glesRenderer update]; // ###
 }
 
