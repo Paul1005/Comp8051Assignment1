@@ -47,6 +47,18 @@
     label.textColor = UIColor.whiteColor;
     label.numberOfLines = 0;
     [self.view addSubview:label];
+    
+    UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
+    button2.frame = CGRectMake(150, 100, 100, 10);
+    [button2 setTitle:@"Button2" forState:UIControlStateNormal];
+    [button2 addTarget:self action:@selector(onClick2:) forControlEvents:UIControlEventTouchDown];
+    [button2 setEnabled:YES];
+    [self.view addSubview:button];
+    
+    UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 1000)];
+    //label.text = @"test";
+    label2.textColor = UIColor.whiteColor;
+    [self.view addSubview:label];
 }
 
 -(void)onClick:(id)sender
@@ -54,6 +66,11 @@
     //Do onClick stuff here
     [glesRenderer onClick:sender];
     [self resignFirstResponder];
+}
+
+-(void)onClick2:(id)sender
+{
+    
 }
 
 - (void)didReceiveMemoryWarning {
