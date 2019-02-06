@@ -156,14 +156,6 @@ enum
         CGPoint touchLocation = [pan locationInView:currentView];
         translationX = touchLocation.x;
         translationY = touchLocation.y;
-        //currentView.center = touchLocation;
-        
-        //or
-        
-        /*CGPoint translation = [pan translationInView:currentView];
-        pan.view.center = CGPointMake(pan.view.center.x + translation.x,
-                                             pan.view.center.y + translation.y);
-        [pan setTranslation:CGPointMake(0, 0) inView:currentView];*/
     }
 }
 
@@ -174,14 +166,9 @@ enum
         CGPoint lastLoc = [touch previousLocationInView:currentView];
         CGPoint diff = CGPointMake(lastLoc.x - location.x, lastLoc.y - location.y);
         
-        rotAngleX = -1 * diff.y / 2.0;
-        if (rotAngleX >= 360.0f)
-            rotAngleX = 0.0f;
-        
-        rotAngleY = -1 * diff.x / 2.0;
-        if (rotAngleY >= 360.0f)
-            rotAngleY = 0.0f;
-    }
+        rotAngleX = -1 * GLKMathDegreesToRadians(diff.y / 2.0)*10;
+        rotAngleY = -1 * GLKMathDegreesToRadians(diff.x / 2.0)*10;
+        }
 }
 
 - (void)update
@@ -193,14 +180,19 @@ enum
     if (isRotating)
     {
         rotAngleY += 0.001f * elapsedTime;
-        if (rotAngleY >= 360.0f)
+        if (rotAngleY >= 2 * M_PI)
             rotAngleY = 0.0f;
     }
 
     // Perspective
     mvp = GLKMatrix4Translate(GLKMatrix4Identity, translationX*0.005, translationY*-0.005, -5.0);
-    mvp = GLKMatrix4Rotate(mvp, rotAngleX, 1.0, 0.0, 0.0 );
-    mvp = GLKMatrix4Rotate(mvp, rotAngleY, 0.0, 1.0, 0.0 );
+    bool isInvertible;
+    GLKVector3 xAxis = GLKMatrix4MultiplyVector3(GLKMatrix4Invert(mvp, &isInvertible),
+                                                 GLKVector3Make(1, 0, 0));
+    mvp = GLKMatrix4Rotate(mvp, rotAngleX, xAxis.x, xAxis.y, xAxis.z );
+    GLKVector3 yAxis = GLKMatrix4MultiplyVector3(GLKMatrix4Invert(mvp, &isInvertible),
+                                                 GLKVector3Make(0, 1, 0));
+    mvp = GLKMatrix4Rotate(mvp, rotAngleY, yAxis.x, yAxis.y, yAxis.z );
     mvp = GLKMatrix4Scale(mvp, scale, scale, scale );
     normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(mvp), NULL);
 
