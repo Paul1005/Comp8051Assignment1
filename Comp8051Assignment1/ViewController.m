@@ -7,18 +7,18 @@
 //
 
 #import "ViewController.h"
-#import "Class1.h"
 
 @interface ViewController() {
     Renderer *glesRenderer; // ###
     UILabel *label;
-    UILabel *label2;
-    Class1 *class1;
+    bool isCPP;
 }
 @end
 
 
 @implementation ViewController
+
+@synthesize theLabel;
 
 - (IBAction)theButton:(id)sender {
     NSLog(@"You pressed the Button!");
@@ -28,6 +28,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     // ### <<<
+    [theLabel setText:@"Initialized"];
+    theObject = [[MixTest alloc] init];
     glesRenderer = [[Renderer alloc] init];
     GLKView *view = (GLKView *)self.view;
     [glesRenderer setup:view];
@@ -45,8 +47,8 @@
     [button setEnabled:YES];
     [self.view addSubview:button];
     
+    isCPP = false;
     label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 1000)];
-    //label.text = @"test";
     label.textColor = UIColor.whiteColor;
     label.numberOfLines = 0;
     [self.view addSubview:label];
@@ -58,9 +60,10 @@
     [button2 setEnabled:YES];
     [self.view addSubview:button2];
     
-    label2 = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 1000)];
-    label2.textColor = UIColor.whiteColor;
-    [self.view addSubview:label];
+    theLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 100)];
+    theLabel.textColor = UIColor.whiteColor;
+    [theLabel setText:[NSString stringWithFormat:@"Obj C value: %d", [theObject val]]];
+    [self.view addSubview:theLabel];
 }
 
 -(void)onClick:(id)sender
@@ -70,9 +73,18 @@
     [self resignFirstResponder];
 }
 
--(void)onClick2:(id)sender
+- (IBAction)onClick2:(id)sender
 {
-    label2.text = [NSString stringWithFormat:@"%d",[class1 getInteger]];
+    isCPP = !isCPP;
+    if(!isCPP){
+        [theObject setUseObjC:YES];
+        [theObject IncrementValue];
+        [theLabel setText:[NSString stringWithFormat:@"Obj C value: %d", [theObject val]]];
+    } else if(isCPP){
+        [theObject setUseObjC:NO];
+        [theObject IncrementValue];
+        [theLabel setText:[NSString stringWithFormat:@"C++ value: %d", [theObject val]]];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

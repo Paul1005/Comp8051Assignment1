@@ -198,7 +198,7 @@ enum
     }
 
     // Perspective
-    mvp = GLKMatrix4Translate(GLKMatrix4Identity, translationX*0.003, translationY*-0.003, -5.0);
+    mvp = GLKMatrix4Translate(GLKMatrix4Identity, translationX*0.005, translationY*-0.005, -5.0);
     mvp = GLKMatrix4Rotate(mvp, rotAngleX, 1.0, 0.0, 0.0 );
     mvp = GLKMatrix4Rotate(mvp, rotAngleY, 0.0, 1.0, 0.0 );
     mvp = GLKMatrix4Scale(mvp, scale, scale, scale );

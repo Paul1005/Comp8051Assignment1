@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DA078591220AB9D1006AE6E3 /* Class1.m in Sources */ = {isa = PBXBuildFile; fileRef = DA078590220AB9D1006AE6E3 /* Class1.m */; };
-		DA078594220AB9E8006AE6E3 /* Class2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA078592220AB9E8006AE6E3 /* Class2.cpp */; };
+		DA078598220B8022006AE6E3 /* CPlusPlus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA078596220B8022006AE6E3 /* CPlusPlus.cpp */; };
+		DA07859B220B80E7006AE6E3 /* MixTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = DA07859A220B80E7006AE6E3 /* MixTest.mm */; };
 		DA9129ED2203F42C007D145C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9129EC2203F42C007D145C /* AppDelegate.m */; };
 		DA9129F32203F42C007D145C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA9129F12203F42C007D145C /* Main.storyboard */; };
 		DA9129F52203F42D007D145C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA9129F42203F42D007D145C /* Assets.xcassets */; };
@@ -41,10 +41,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		DA078590220AB9D1006AE6E3 /* Class1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Class1.m; sourceTree = "<group>"; };
-		DA078592220AB9E8006AE6E3 /* Class2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Class2.cpp; sourceTree = "<group>"; };
-		DA078593220AB9E8006AE6E3 /* Class2.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Class2.hpp; sourceTree = "<group>"; };
-		DA078595220ABBF6006AE6E3 /* Class1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Class1.h; sourceTree = "<group>"; };
+		DA078596220B8022006AE6E3 /* CPlusPlus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPlusPlus.cpp; sourceTree = "<group>"; };
+		DA078597220B8022006AE6E3 /* CPlusPlus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPlusPlus.h; sourceTree = "<group>"; };
+		DA078599220B80E7006AE6E3 /* MixTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixTest.h; sourceTree = "<group>"; };
+		DA07859A220B80E7006AE6E3 /* MixTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MixTest.mm; sourceTree = "<group>"; };
 		DA9129E82203F42C007D145C /* Comp8051Assignment1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Comp8051Assignment1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA9129EB2203F42C007D145C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DA9129EC2203F42C007D145C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -97,6 +97,8 @@
 		DA9129DF2203F42C007D145C = {
 			isa = PBXGroup;
 			children = (
+				DA078596220B8022006AE6E3 /* CPlusPlus.cpp */,
+				DA078597220B8022006AE6E3 /* CPlusPlus.h */,
 				DA9129EA2203F42C007D145C /* Comp8051Assignment1 */,
 				DA912A032203F42D007D145C /* Comp8051Assignment1Tests */,
 				DA912A0E2203F42D007D145C /* Comp8051Assignment1UITests */,
@@ -117,6 +119,8 @@
 		DA9129EA2203F42C007D145C /* Comp8051Assignment1 */ = {
 			isa = PBXGroup;
 			children = (
+				DA078599220B80E7006AE6E3 /* MixTest.h */,
+				DA07859A220B80E7006AE6E3 /* MixTest.mm */,
 				DA912A24220581C5007D145C /* GLESRenderer.cpp */,
 				DA912A1D220581C4007D145C /* GLESRenderer.hpp */,
 				DA912A22220581C4007D145C /* Renderer.h */,
@@ -132,10 +136,6 @@
 				DA9129F62203F42D007D145C /* LaunchScreen.storyboard */,
 				DA9129F92203F42D007D145C /* Info.plist */,
 				DA9129FA2203F42D007D145C /* main.m */,
-				DA078590220AB9D1006AE6E3 /* Class1.m */,
-				DA078595220ABBF6006AE6E3 /* Class1.h */,
-				DA078592220AB9E8006AE6E3 /* Class2.cpp */,
-				DA078593220AB9E8006AE6E3 /* Class2.hpp */,
 			);
 			path = Comp8051Assignment1;
 			sourceTree = "<group>";
@@ -290,10 +290,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA078594220AB9E8006AE6E3 /* Class2.cpp in Sources */,
+				DA078598220B8022006AE6E3 /* CPlusPlus.cpp in Sources */,
+				DA07859B220B80E7006AE6E3 /* MixTest.mm in Sources */,
 				DA912A29220581C5007D145C /* GLESRenderer.cpp in Sources */,
 				DA9129FB2203F42D007D145C /* main.m in Sources */,
-				DA078591220AB9D1006AE6E3 /* Class1.m in Sources */,
 				DA912A26220581C5007D145C /* Renderer.mm in Sources */,
 				DA912A28220581C5007D145C /* ViewController.m in Sources */,
 				DA9129ED2203F42C007D145C /* AppDelegate.m in Sources */,

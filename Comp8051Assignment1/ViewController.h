@@ -8,9 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "Renderer.h" // ###
+#import "MixTest.h"
 
 //@interface ViewController : UIViewController
-@interface ViewController : GLKViewController // ###
+@interface ViewController : GLKViewController{
+    MixTest *theObject;
+} // ###
 
+@property (strong, nonatomic) IBOutlet UILabel *theLabel;
+- (IBAction)ObjCButtonPressed:(id)sender;
+- (IBAction)CPPButtonPressed:(id)sender;
 @end
 
