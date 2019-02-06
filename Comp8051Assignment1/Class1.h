@@ -15,5 +15,5 @@
 
 - (void)initializeInteger;
 - (int)getInteger;
-
+@end
 #endif /* Class1_h */

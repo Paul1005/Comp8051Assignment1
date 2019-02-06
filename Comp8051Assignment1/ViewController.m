@@ -7,10 +7,13 @@
 //
 
 #import "ViewController.h"
+#import "Class1.h"
 
 @interface ViewController() {
     Renderer *glesRenderer; // ###
     UILabel *label;
+    UILabel *label2;
+    Class1 *class1;
 }
 @end
 
@@ -49,14 +52,13 @@
     [self.view addSubview:label];
     
     UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    button2.frame = CGRectMake(150, 100, 100, 10);
+    button2.frame = CGRectMake(200, 100, 100, 10);
     [button2 setTitle:@"Button2" forState:UIControlStateNormal];
     [button2 addTarget:self action:@selector(onClick2:) forControlEvents:UIControlEventTouchDown];
     [button2 setEnabled:YES];
-    [self.view addSubview:button];
+    [self.view addSubview:button2];
     
-    UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 1000)];
-    //label.text = @"test";
+    label2 = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 1000)];
     label2.textColor = UIColor.whiteColor;
     [self.view addSubview:label];
 }
@@ -70,7 +72,7 @@
 
 -(void)onClick2:(id)sender
 {
-    
+    label2.text = [NSString stringWithFormat:@"%d",[class1 getInteger]];
 }
 
 - (void)didReceiveMemoryWarning {
